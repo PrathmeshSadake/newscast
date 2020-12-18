@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:newscast/helper/news.dart';
 import 'package:newscast/models/article_model.dart';
-import 'package:newscast/widgets/category_tile.dart';
 import '../widgets/blog_tile.dart';
 import 'package:newscast/widgets/top_news.dart';
-import '../helper/data.dart';
 import '../models/category_model.dart';
 import './category_news.dart';
 
@@ -15,19 +14,21 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController _controller;
-  int _selectedTab = 0;
+  // int _selectedTab = 0;
 
   @override
   void initState() {
-    super.initState();
-    _controller = TabController(length: tabs.length, vsync: this);
-    //categories = getCategories();
-    getNews();
-    _controller.addListener(() {
-      print(
-        _controller.index.toString(),
-      );
-    });
+    if (mounted) {
+      super.initState();
+      _controller = TabController(length: tabs.length, vsync: this);
+      //categories = getCategories();
+      getNews();
+      _controller.addListener(() {
+        print(
+          _controller.index.toString(),
+        );
+      });
+    }
   }
 
   List<Widget> tabs = [
@@ -94,32 +95,32 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 TabBar(isScrollable: true, controller: _controller, tabs: tabs),
           ),
           body: TabBarView(controller: _controller, children: [
-                  WorldNews(
-                    articles: articles,
-                    isLoading: !_loading,
-                  ),
-                  CategoryNews(
-                    category: 'business',
-                  ),
-                  CategoryNews(
-                    category: 'general',
-                  ),
-                  CategoryNews(
-                    category: 'sports',
-                  ),
-                  CategoryNews(
-                    category: 'entertainment',
-                  ),
-                  CategoryNews(
-                    category: 'health',
-                  ),
-                  CategoryNews(
-                    category: 'technology',
-                  ),
-                  CategoryNews(
-                    category: 'science',
-                  ),
-                ])
+            WorldNews(
+              articles: articles,
+              isLoading: !_loading,
+            ),
+            CategoryNews(
+              category: 'business',
+            ),
+            CategoryNews(
+              category: 'general',
+            ),
+            CategoryNews(
+              category: 'sports',
+            ),
+            CategoryNews(
+              category: 'entertainment',
+            ),
+            CategoryNews(
+              category: 'health',
+            ),
+            CategoryNews(
+              category: 'technology',
+            ),
+            CategoryNews(
+              category: 'science',
+            ),
+          ])
           // : SingleChildScrollView(
           //     child: Container(
           //       child: Column(
@@ -256,29 +257,56 @@ class WorldNews extends StatefulWidget {
 class _WorldNewsState extends State<WorldNews> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: widget.isLoading
-          ? Container(
-            padding: EdgeInsets.only(top: 20.0),
-              child: ListView.builder(
-                physics: ClampingScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (ctx, index) {
-                  return BlogTile(
-                    imageUrl: widget.articles[index + 1].urlToImage,
-                    title: widget.articles[index + 1].title,
-                    description: widget.articles[index + 1].description,
-                    url: widget.articles[index + 1].url,
-                    content: widget.articles[index + 1].content,
+    return widget.isLoading
+        ? SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 100.0,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      return TopNews(
+                        title: widget.articles[index].title,
+                      );
+                    },
+                    itemCount: 4,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: ListView.builder(
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      return BlogTile(
+                        imageUrl: widget.articles[index + 4].urlToImage,
+                        title: widget.articles[index + 4].title,
+                        description: widget.articles[index + 4].description,
+                        url: widget.articles[index + 4].url,
+                        content: widget.articles[index + 4].content,
+                      );
+                    },
+                    itemCount: widget.articles.length - 5,
+                  ),
+                ),
+              ],
+            ),
+          )
+        : Container(
+            child: Center(
+              child: SpinKitFadingCircle(
+                itemBuilder: (_, int index) {
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: index.isEven ? Colors.red : Colors.green,
+                    ),
                   );
                 },
-                itemCount: widget.articles.length,
-              ),
-            ) : Container(
-              child: Center(
-                child: CircularProgressIndicator(),
+                size: 20.0,
               ),
             ),
-    );
+          );
   }
 }

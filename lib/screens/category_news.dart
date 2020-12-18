@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:newscast/models/article_model.dart';
 import 'package:newscast/widgets/blog_tile.dart';
 import '../helper/news.dart';
@@ -42,7 +43,16 @@ class _CategoryNewsState extends State<CategoryNews> {
     _loading
           ? Container(
               child: Center(
-                child: CircularProgressIndicator(),
+                child: SpinKitFadingCircle(
+                  itemBuilder: (_, int index) {
+                    return DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: index.isEven ? Colors.red : Colors.green,
+                      ),
+                    );
+                  },
+                  size: 20.0,
+                ),
               ),
             )
           : SingleChildScrollView(
