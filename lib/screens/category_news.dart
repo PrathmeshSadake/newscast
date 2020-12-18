@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newscast/models/article_model.dart';
+import 'package:newscast/widgets/blog_tile.dart';
 import '../helper/news.dart';
-import 'article_view.dart';
 
 class CategoryNews extends StatefulWidget {
   final String category;
@@ -61,38 +61,6 @@ class _CategoryNewsState extends State<CategoryNews> {
                 ),
               ),
             ),
-    );
-  }
-}
-
-class BlogTile extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String description;
-  final String url;
-
-  BlogTile({
-    @required this.imageUrl,
-    @required this.title,
-    @required this.description,
-    @required this.url,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (ctx) => ArticleView(blogUrl: url)));
-      },
-      child: Container(
-        child: Column(
-          children: [
-            Image.network(imageUrl),
-            Text(title),
-            Text(description),
-          ],
-        ),
-      ),
     );
   }
 }
