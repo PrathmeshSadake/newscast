@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
+
 class Category {
   String categoryName;
-  String imageUrl;
+  Color color;
 }
