@@ -1,57 +1,78 @@
+import 'package:flutter/material.dart';
 import '../models/category_model.dart';
 
 List<Category> getCategories() {
   List<Category> myCategories = List<Category>();
   Category categoryModel;
 
-  //1
-  categoryModel = Category();
-  categoryModel.categoryName = "Business";
-  categoryModel.imageUrl =
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80";
-  myCategories.add(categoryModel);
+  List<String> _categories = [
+    "Business",
+    "Entertainment",
+    "Technology",
+    "General",
+    "Sports",
+    "Health",
+    "Science",
+  ];
 
-  //2
-  categoryModel = Category();
-  categoryModel.categoryName = "Entertainment";
-  categoryModel.imageUrl =
-      "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80";
-  myCategories.add(categoryModel);
+  List<Color> _colors = [
+    Color(0xFF19249f),
+    Color(0xFFffba57),
+    Color(0xFFa00058),
+    Color(0xFFecd000),
+    Color(0xFFe69a28),
+    Color(0xFF5564ec),
+    Color(0xFFf7f7f7),
+  ];
 
-  //3
-  categoryModel = Category();
-  categoryModel.categoryName = "General";
-  categoryModel.imageUrl =
-      "https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
-  myCategories.add(categoryModel);
+  for (var i = 0; i <= 6; i++) {
+    categoryModel = Category();
+    categoryModel.categoryName = _categories[i];
+    categoryModel.color = _colors[i];
+    myCategories.add(categoryModel);
+  }
 
-  //4
-  categoryModel = Category();
-  categoryModel.categoryName = "Health";
-  categoryModel.imageUrl =
-      "https://images.unsplash.com/photo-1494390248081-4e521a5940db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1595&q=80";
-  myCategories.add(categoryModel);
+  // //1
+  // categoryModel = Category();
+  // categoryModel.categoryName = "Business";
 
-  //5
-  categoryModel = Category();
-  categoryModel.categoryName = "Science";
-  categoryModel.imageUrl =
-      "https://images.unsplash.com/photo-1554475901-4538ddfbccc2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1504&q=80";
-  myCategories.add(categoryModel);
+  // myCategories.add(categoryModel);
 
-  //5
-  categoryModel = Category();
-  categoryModel.categoryName = "Sports";
-  categoryModel.imageUrl =
-      "https://images.unsplash.com/photo-1495563923587-bdc4282494d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80";
-  myCategories.add(categoryModel);
+  // //2
+  // categoryModel = Category();
+  // categoryModel.categoryName = "Entertainment";
 
-  //5
-  categoryModel = Category();
-  categoryModel.categoryName = "Technology";
-  categoryModel.imageUrl =
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80";
-  myCategories.add(categoryModel);
+  // myCategories.add(categoryModel);
+
+  // //3
+  // categoryModel = Category();
+  // categoryModel.categoryName = "General";
+
+  // myCategories.add(categoryModel);
+
+  // //4
+  // categoryModel = Category();
+  // categoryModel.categoryName = "Health";
+
+  // myCategories.add(categoryModel);
+
+  // //5
+  // categoryModel = Category();
+  // categoryModel.categoryName = "Science";
+
+  // myCategories.add(categoryModel);
+
+  // //5
+  // categoryModel = Category();
+  // categoryModel.categoryName = "Sports";
+
+  // myCategories.add(categoryModel);
+
+  // //6
+  // categoryModel = Category();
+  // categoryModel.categoryName = "Technology";
+
+  // myCategories.add(categoryModel);
 
   return myCategories;
 }
