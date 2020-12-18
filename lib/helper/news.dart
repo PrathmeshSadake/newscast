@@ -17,7 +17,9 @@ class News {
 
     if (jsonData['status'] == 'ok') {
       jsonData['articles'].forEach((element) {
-        if (element["urlToImage"] != null && element["description"] != null) {
+        if (element["urlToImage"] != null &&
+            element["description"] != null &&
+            element["content"] != null) {
           ArticleModel articleModel = ArticleModel(
             title: element['title'],
             author: element['author'],
@@ -25,9 +27,8 @@ class News {
             url: element['url'],
             urlToImage: element['urlToImage'],
             // publishedAt: element['publishedAt'],
-            content: element['context'],
+            content: element['content'],
           );
-
           news.add(articleModel);
         }
       });
@@ -56,7 +57,7 @@ class CategoryNewsClass {
             url: element['url'],
             urlToImage: element['urlToImage'],
             // publishedAt: element['publishedAt'],
-            content: element['context'],
+            content: element['content'],
           );
 
           news.add(articleModel);
@@ -65,4 +66,3 @@ class CategoryNewsClass {
     }
   }
 }
-
