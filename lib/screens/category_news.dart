@@ -32,35 +32,41 @@ class _CategoryNewsState extends State<CategoryNews> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Newscast'),
-        elevation: 0,
-      ),
-      body: _loading
+     return
+    // Scaffold(
+    //   appBar: AppBar(
+    //     title: Text('Newscast'),
+    //     elevation: 0,
+    //   ),
+    //   body: 
+    _loading
           ? Container(
               child: Center(
                 child: CircularProgressIndicator(),
               ),
             )
           : SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(top: 16.0),
-                child: ListView.builder(
-                  physics: ClampingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (ctx, index) {
-                    return BlogTile(
-                      imageUrl: articles[index].urlToImage,
-                      title: articles[index].title,
-                      description: articles[index].description,
-                      url: articles[index].url,
-                    );
-                  },
-                  itemCount: articles.length,
-                ),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 16.0),
+                    child: ListView.builder(
+                      physics: ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (ctx, index) {
+                        return BlogTile(
+                          imageUrl: articles[index].urlToImage,
+                          title: articles[index].title,
+                          description: articles[index].description,
+                          url: articles[index].url,
+                        );
+                      },
+                      itemCount: articles.length,
+                    ),
+                  ),
+                ],
               ),
-            ),
+            
     );
   }
 }
