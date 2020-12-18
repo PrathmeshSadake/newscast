@@ -7,11 +7,11 @@ List<Category> getCategories() {
 
   List<String> _categories = [
     "Business",
-    "Entertainment",
-    "Technology",
     "General",
     "Sports",
+    "Entertainment",
     "Health",
+    "Technology",
     "Science",
   ];
 
@@ -22,7 +22,7 @@ List<Category> getCategories() {
     Color(0xFFecd000),
     Color(0xFFe69a28),
     Color(0xFF5564ec),
-    Color(0xFFf7f7f7),
+    Color(0xFFfe5612),
   ];
 
   for (var i = 0; i <= 6; i++) {

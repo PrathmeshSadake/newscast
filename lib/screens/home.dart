@@ -150,7 +150,7 @@ class _HomeState extends State<Home> {
                                 content: articles[index + 1].content,
                               );
                             },
-                            itemCount: articles.length - 1,
+                            itemCount: articles.length -1,
                           ),
                         ],
                       ),
