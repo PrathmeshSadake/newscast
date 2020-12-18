@@ -32,47 +32,5 @@ List<Category> getCategories() {
     myCategories.add(categoryModel);
   }
 
-  // //1
-  // categoryModel = Category();
-  // categoryModel.categoryName = "Business";
-
-  // myCategories.add(categoryModel);
-
-  // //2
-  // categoryModel = Category();
-  // categoryModel.categoryName = "Entertainment";
-
-  // myCategories.add(categoryModel);
-
-  // //3
-  // categoryModel = Category();
-  // categoryModel.categoryName = "General";
-
-  // myCategories.add(categoryModel);
-
-  // //4
-  // categoryModel = Category();
-  // categoryModel.categoryName = "Health";
-
-  // myCategories.add(categoryModel);
-
-  // //5
-  // categoryModel = Category();
-  // categoryModel.categoryName = "Science";
-
-  // myCategories.add(categoryModel);
-
-  // //5
-  // categoryModel = Category();
-  // categoryModel.categoryName = "Sports";
-
-  // myCategories.add(categoryModel);
-
-  // //6
-  // categoryModel = Category();
-  // categoryModel.categoryName = "Technology";
-
-  // myCategories.add(categoryModel);
-
   return myCategories;
 }
