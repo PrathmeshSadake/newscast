@@ -31,11 +31,27 @@ class BlogTile extends StatelessWidget {
                     )));
       },
       child: Container(
+        margin: EdgeInsets.fromLTRB(5, 10.0, 5, 0),
+        padding: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Color(0xFF393F47),
+        ),
         child: Column(
           children: [
-            Image.network(imageUrl),
-            Text(title),
-            Text(description),
+            ClipRRect(
+               borderRadius: BorderRadius.all(Radius.circular(20)),
+              child: Image.network(imageUrl)),
+            Container(
+              margin: EdgeInsets.only(top: 10.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+              children: [
+                Text(title),
+                Text(description),
+              ],
+            )),
+            
           ],
         ),
       ),

@@ -22,18 +22,8 @@ class CategoryTile extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
         child: Stack(
           children: [
-            // ClipRRect(
-            //   borderRadius: BorderRadius.circular(8.0),
-            //   child: CachedNetworkImage(
-            //     imageUrl: imageUrl,
-            //     width: 120,
-            //     height: 60,
-            //   ),
-            // ),
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                // width: 120,
-                // height: 60,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     color: backgroundColor),

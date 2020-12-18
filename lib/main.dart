@@ -10,9 +10,19 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Newscast',
       theme: ThemeData(
-        primaryColor: Colors.white,
+        primaryColor: Colors.black,
       ),
       home: Home(),
     );
   }
 }
+
+
+/*
+COLORS: 
+
+Dark: #252B32
+Moderate: #31353D
+Light: #393F47
+
+*/
