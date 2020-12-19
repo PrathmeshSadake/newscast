@@ -66,12 +66,10 @@ flutter:
       fonts:
         - asset: assets/fonts/CarterOne-Regular.ttf
           weight: 400
-    - family: Trajan Pro
+    - family: Lato
       fonts:
         - asset: assets/fonts/Lato-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Lato-Light.ttf
-          weight: 300
     - family: Montserrat
       fonts:
         - asset: assets/fonts/Montserrat-Medium.ttf
