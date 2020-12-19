@@ -6,21 +6,19 @@ class BlogTile extends StatelessWidget {
   final String title;
   final String description;
   final String url;
-  final String content;
 
   BlogTile({
     @required this.imageUrl,
     @required this.title,
     @required this.description,
     @required this.url,
-    this.content,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(5, 10, 5, 10),
-      padding: EdgeInsets.fromLTRB(5,5,5,20),
+      margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
+      padding: EdgeInsets.fromLTRB(5, 5, 5, 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
         color: Color(0xFF393F47),
@@ -40,7 +38,8 @@ class BlogTile extends StatelessWidget {
                     title,
                     style: TextStyle(
                       color: Colors.white70,
-                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   SizedBox(
@@ -50,7 +49,8 @@ class BlogTile extends StatelessWidget {
                     description,
                     style: TextStyle(
                       color: Colors.white54,
-                      fontWeight: FontWeight.w300,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   SizedBox(
@@ -65,7 +65,7 @@ class BlogTile extends StatelessWidget {
                                     imageUrl: imageUrl,
                                     title: title,
                                     desc: description,
-                                    content: content,
+                                    url: url,
                                   )));
                     },
                     child: Container(
@@ -73,7 +73,7 @@ class BlogTile extends StatelessWidget {
                             EdgeInsets.symmetric(horizontal: 22, vertical: 6),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
-                          color: Color(0xFFffba57),
+                          color: Color(0xFFfe5612),
                         ),
                         child: Text(
                           'Read more',

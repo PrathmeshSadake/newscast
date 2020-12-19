@@ -4,12 +4,16 @@ import 'package:http/http.dart' as http;
 
 import '../models/article_model.dart';
 
+// f689f89577224af68e3a4d2f7140bd88
+
+String _apiKey = 'f689f89577224af68e3a4d2f7140bd88';
+
 class News {
   List<ArticleModel> news = [];
 
   Future<void> getNews() async {
     String url =
-        'http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bca60ca4665a42e3b01d791bca670476';
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=$_apiKey';
 
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
@@ -26,8 +30,6 @@ class News {
             description: element['description'],
             url: element['url'],
             urlToImage: element['urlToImage'],
-            // publishedAt: element['publishedAt'],
-            content: element['content'],
           );
           news.add(articleModel);
         }
@@ -41,7 +43,7 @@ class CategoryNewsClass {
 
   Future<void> getNews(String category) async {
     String url =
-        'http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=bca60ca4665a42e3b01d791bca670476';
+        'https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=$_apiKey';
 
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
@@ -56,8 +58,6 @@ class CategoryNewsClass {
             description: element['description'],
             url: element['url'],
             urlToImage: element['urlToImage'],
-            // publishedAt: element['publishedAt'],
-            content: element['content'],
           );
 
           news.add(articleModel);

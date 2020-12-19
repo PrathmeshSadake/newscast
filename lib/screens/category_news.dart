@@ -18,8 +18,10 @@ class _CategoryNewsState extends State<CategoryNews> {
 
   @override
   void initState() {
-    super.initState();
-    getNews();
+    if (this.mounted) {
+      super.initState();
+      getNews();
+    }
   }
 
   getNews() async {
@@ -33,50 +35,42 @@ class _CategoryNewsState extends State<CategoryNews> {
 
   @override
   Widget build(BuildContext context) {
-     return
-    // Scaffold(
-    //   appBar: AppBar(
-    //     title: Text('Newscast'),
-    //     elevation: 0,
-    //   ),
-    //   body: 
-    _loading
-          ? Container(
-              child: Center(
-                child: SpinKitFadingCircle(
-                  itemBuilder: (_, int index) {
-                    return DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: index.isEven ? Colors.red : Colors.green,
-                      ),
-                    );
-                  },
-                  size: 20.0,
-                ),
-              ),
-            )
-          : SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: ListView.builder(
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (ctx, index) {
-                        return BlogTile(
-                          imageUrl: articles[index].urlToImage,
-                          title: articles[index].title,
-                          description: articles[index].description,
-                          url: articles[index].url,
-                        );
-                      },
-                      itemCount: articles.length,
+    return _loading
+        ? Container(
+            child: Center(
+              child: SpinKitFadingCircle(
+                itemBuilder: (_, int index) {
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: index.isEven ? Colors.red : Colors.green,
                     ),
-                  ),
-                ],
+                  );
+                },
+                size: 20.0,
               ),
-            
-    );
+            ),
+          )
+        : SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 16.0),
+                  child: ListView.builder(
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      return BlogTile(
+                        imageUrl: articles[index].urlToImage,
+                        title: articles[index].title,
+                        description: articles[index].description,
+                        url: articles[index].url,
+                      );
+                    },
+                    itemCount: articles.length,
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 }

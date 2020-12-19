@@ -16,13 +16,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-/*
-COLORS: 
-
-Dark: #252B32
-Moderate: #31353D
-Light: #393F47
-
-*/

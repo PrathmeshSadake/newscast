@@ -33,7 +33,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   List<Widget> tabs = [
     Tab(
-      text: "World",
+      text: "Top Headlines",
     ),
     Tab(
       text: "Business",
@@ -77,170 +77,67 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
-          backgroundColor: Color(0xff252B32),
           appBar: AppBar(
-            leading: Icon(Icons.bar_chart),
-            title: Text('NEWSCAST',
+            leading: Image.asset(
+              'assets/images/logo.png',
+            ),
+            title: Center(
+              child: Text(
+                'NEWSCAST',
                 textAlign: TextAlign.center,
-                style:
-                    TextStyle(fontWeight: FontWeight.w900, letterSpacing: 14)),
+                style: TextStyle(
+                  fontSize: 22,
+                  letterSpacing: 6,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
             elevation: 0,
             actions: [
-              Container(
+              Opacity(
+                opacity: 0.0,
+                child: Container(
                   margin: EdgeInsets.only(right: 20),
-                  child: Icon(Icons.language_sharp))
+                  child: Icon(
+                    Icons.language_sharp,
+                  ),
+                ),
+              )
             ],
-            backgroundColor: Color(0xff252B32),
             bottom:
                 TabBar(isScrollable: true, controller: _controller, tabs: tabs),
           ),
-          body: TabBarView(controller: _controller, children: [
-            WorldNews(
-              articles: articles,
-              isLoading: !_loading,
-            ),
-            CategoryNews(
-              category: 'business',
-            ),
-            CategoryNews(
-              category: 'general',
-            ),
-            CategoryNews(
-              category: 'sports',
-            ),
-            CategoryNews(
-              category: 'entertainment',
-            ),
-            CategoryNews(
-              category: 'health',
-            ),
-            CategoryNews(
-              category: 'technology',
-            ),
-            CategoryNews(
-              category: 'science',
-            ),
-          ])
-          // : SingleChildScrollView(
-          //     child: Container(
-          //       child: Column(
-          //         children: [
-          //           Container(
-          //             child: TopNews(
-          //               imageUrl: articles[0].urlToImage,
-          //               title: articles[0].title,
-          //             ),
-          //           ),
-          //           Container(
-          //             margin: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-          //             width: double.infinity,
-          //             decoration: BoxDecoration(
-          //                 color: Color(0xFF393F47),
-          //                 borderRadius: BorderRadius.all(Radius.circular(16))),
-          //             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          //             child: Column(
-          //               crossAxisAlignment: CrossAxisAlignment.start,
-          //               children: [
-          //                 Row(
-          //                   children: [
-          //                     Icon(
-          //                       Icons.category,
-          //                       size: 20,
-          //                       color: Colors.white,
-          //                     ),
-          //                     SizedBox(
-          //                       width: 10,
-          //                     ),
-          //                     Text(
-          //                       'Top Categories',
-          //                       style: TextStyle(
-          //                           letterSpacing: 1,
-          //                           fontSize: 20,
-          //                           fontWeight: FontWeight.w600,
-          //                           color: Colors.white),
-          //                     ),
-          //                   ],
-          //                 ),
-          //                 Wrap(
-          //                   children: [
-          //                     CategoryTile(
-          //                       backgroundColor: categories[0].color,
-          //                       categoryName: categories[0].categoryName,
-          //                     ),
-          //                     CategoryTile(
-          //                       backgroundColor: categories[1].color,
-          //                       categoryName: categories[1].categoryName,
-          //                     ),
-          //                     CategoryTile(
-          //                       backgroundColor: categories[2].color,
-          //                       categoryName: categories[2].categoryName,
-          //                     ),
-          //                     CategoryTile(
-          //                       backgroundColor: categories[3].color,
-          //                       categoryName: categories[3].categoryName,
-          //                     ),
-          //                     CategoryTile(
-          //                       backgroundColor: categories[4].color,
-          //                       categoryName: categories[4].categoryName,
-          //                     ),
-          //                     CategoryTile(
-          //                       backgroundColor: categories[5].color,
-          //                       categoryName: categories[5].categoryName,
-          //                     ),
-          //                     CategoryTile(
-          //                       backgroundColor: categories[6].color,
-          //                       categoryName: categories[6].categoryName,
-          //                     ),
-          //                   ],
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //           Container(
-          //             padding: EdgeInsets.all(5.0),
-          //             child: Column(
-          //               children: [
-          //                 Row(
-          //                   children: [
-          //                     Icon(
-          //                       Icons.thumb_up_alt_outlined,
-          //                       size: 20,
-          //                       color: Colors.white,
-          //                     ),
-          //                     SizedBox(
-          //                       width: 10,
-          //                     ),
-          //                     Text(
-          //                       "RECOMMENDED FOR YOU",
-          //                       style: TextStyle(
-          //                           letterSpacing: 1,
-          //                           fontSize: 20,
-          //                           fontWeight: FontWeight.w600,
-          //                           color: Colors.white),
-          //                     )
-          //                   ],
-          //                 ),
-          //                 ListView.builder(
-          //                   physics: ClampingScrollPhysics(),
-          //                   shrinkWrap: true,
-          //                   itemBuilder: (ctx, index) {
-          //                     return BlogTile(
-          //                       imageUrl: articles[index + 1].urlToImage,
-          //                       title: articles[index + 1].title,
-          //                       description: articles[index + 1].description,
-          //                       url: articles[index + 1].url,
-          //                       content: articles[index + 1].content,
-          //                     );
-          //                   },
-          //                   itemCount: articles.length - 1,
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          // ),
+          body: Container(
+            color: Color(0xff141414),
+            child: TabBarView(controller: _controller, children: [
+              WorldNews(
+                articles: articles,
+                isLoading: !_loading,
+              ),
+              CategoryNews(
+                category: 'business',
+              ),
+              CategoryNews(
+                category: 'general',
+              ),
+              CategoryNews(
+                category: 'sports',
+              ),
+              CategoryNews(
+                category: 'entertainment',
+              ),
+              CategoryNews(
+                category: 'health',
+              ),
+              CategoryNews(
+                category: 'technology',
+              ),
+              CategoryNews(
+                category: 'science',
+              ),
+            ]),
+          ),
           ),
     );
   }
@@ -261,34 +158,20 @@ class _WorldNewsState extends State<WorldNews> {
         ? SingleChildScrollView(
             child: Column(
               children: [
+                TopStories(widget: widget),
                 Container(
-                  height: 100.0,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemBuilder: (ctx, index) {
-                      return TopNews(
-                        title: widget.articles[index].title,
-                      );
-                    },
-                    itemCount: 4,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 20.0),
                   child: ListView.builder(
                     physics: ClampingScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {
                       return BlogTile(
-                        imageUrl: widget.articles[index + 4].urlToImage,
-                        title: widget.articles[index + 4].title,
-                        description: widget.articles[index + 4].description,
-                        url: widget.articles[index + 4].url,
-                        content: widget.articles[index + 4].content,
+                        imageUrl: widget.articles[index + 3].urlToImage,
+                        title: widget.articles[index + 3].title,
+                        description: widget.articles[index + 3].description,
+                        url: widget.articles[index + 3].url,
                       );
                     },
-                    itemCount: widget.articles.length - 5,
+                    itemCount: widget.articles.length - 4,
                   ),
                 ),
               ],
@@ -308,5 +191,51 @@ class _WorldNewsState extends State<WorldNews> {
               ),
             ),
           );
+  }
+}
+
+class TopStories extends StatelessWidget {
+  TopStories({
+    @required this.widget,
+  });
+
+  final WorldNews widget;
+
+  final List<Color> _colors = [
+    Color(0xFF19249f),
+    Color(0xFFffba57),
+    Color(0xFFa00058),
+    Color(0xFFecd000),
+    Color(0xFFe69a28),
+    Color(0xFF5564ec),
+    Color(0xFFfe5612),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, bottom: 10, left: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(15), topLeft: Radius.circular(15)),
+        // color: Color(0xFF393f47),
+      ),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5),
+        height: 130.0,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemBuilder: (ctx, index) {
+            return TopNews(
+              title: widget.articles[index].title,
+              color: _colors[index],
+              imageUrl: widget.articles[index].urlToImage,
+            );
+          },
+          itemCount: 3,
+        ),
+      ),
+    );
   }
 }
