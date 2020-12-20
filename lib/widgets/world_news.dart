@@ -21,11 +21,11 @@ class _WorldNewsState extends State<WorldNews> {
     return widget.isLoading
         ? SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   decoration: BoxDecoration(
                     color: Colors.grey[800],
                     borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -34,16 +34,16 @@ class _WorldNewsState extends State<WorldNews> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${widget.day},',
+                        '${widget.day}',
                         style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w800,
-                            color: Colors.white,
+                            color: Colors.yellow,
                             fontSize: 30,
                             letterSpacing: 3),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 3.0),
+                        padding: const EdgeInsets.only(left: 3.0, top: 5),
                         child: Text(
                           widget.date,
                           style: TextStyle(
@@ -58,6 +58,36 @@ class _WorldNewsState extends State<WorldNews> {
                   ),
                 ),
                 TopStories(widget: widget),
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[900],
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Icon(
+                          Icons.language_outlined,
+                          size: 25,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'News Today',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: 2),
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
                   child: ListView.builder(
                     physics: ClampingScrollPhysics(),

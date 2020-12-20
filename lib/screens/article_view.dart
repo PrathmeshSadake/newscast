@@ -32,11 +32,11 @@ class ArticleView extends StatelessWidget {
         ),
         title: Center(
           child: Text(
-            'NEWSCAST',
+            'NEWSCAST 📰',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 22,
-              letterSpacing: 6,
+              letterSpacing: 3,
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w800,
             ),

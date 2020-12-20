@@ -31,7 +31,7 @@ class TopStories extends StatelessWidget {
       ),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5),
-        height: 140.0,
+        height: 150.0,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,

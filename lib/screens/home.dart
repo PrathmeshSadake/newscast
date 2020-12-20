@@ -7,7 +7,6 @@ import 'package:newscast/models/category_model.dart';
 import 'package:newscast/screens/category_news.dart';
 import 'package:newscast/widgets/world_news.dart';
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -18,8 +17,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    super.initState();
+
     if (mounted) {
-      super.initState();
       _controller = TabController(length: tabs.length, vsync: this);
       getDate();
       getNews();
@@ -67,25 +67,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   getNews() async {
     News newsClass = News();
-    while (mounted) {
-      await newsClass.getNews();
-      articles = newsClass.news;
-      setState(() {
-        _loading = false;
-      });
-    }
+    await newsClass.getNews();
+    articles = newsClass.news;
+    if (!mounted) return;
+    setState(() {
+      _loading = false;
+    });
   }
 
   getDate() {
-    while (mounted) {
-      var now = new DateTime.now();
-      var formatter = new DateFormat('dd-MM-yyyy');
-      var day = new DateFormat('EEEE').format(now);
-      setState(() {
-        formattedDate = formatter.format(now);
-        formattedDay = day;
-      });
-    }
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd-MM-yyyy');
+    var day = new DateFormat('EEEE').format(now);
+    setState(() {
+      formattedDate = formatter.format(now);
+      formattedDay = day;
+    });
   }
 
   @override
@@ -102,11 +99,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           title: Center(
             child: Text(
-              'NEWSCAST',
+              'NEWSCAST 📰',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 22,
-                letterSpacing: 6,
+                letterSpacing: 3,
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w800,
               ),
@@ -163,7 +160,3 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 }
-
-
-
-

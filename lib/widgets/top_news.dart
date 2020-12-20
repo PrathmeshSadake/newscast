@@ -14,7 +14,7 @@ class TopNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140.0,
+      height: 150.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: color,
@@ -41,7 +41,7 @@ class TopNews extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 5),
-                width: 160,
+                width: 165,
                 child: Text(
                   title,
                   softWrap: true,
