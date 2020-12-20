@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import '../models/article_model.dart';
 
-// f689f89577224af68e3a4d2f7140bd88
 
 String _apiKey = 'f689f89577224af68e3a4d2f7140bd88';
 

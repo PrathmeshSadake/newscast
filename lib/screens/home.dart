@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart';
+
 import 'package:newscast/helper/news.dart';
 import 'package:newscast/models/article_model.dart';
-import '../widgets/blog_tile.dart';
-import 'package:newscast/widgets/top_news.dart';
-import '../models/category_model.dart';
-import './category_news.dart';
+import 'package:newscast/models/category_model.dart';
+import 'package:newscast/screens/category_news.dart';
+import 'package:newscast/widgets/world_news.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -14,14 +15,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController _controller;
-  // int _selectedTab = 0;
 
   @override
   void initState() {
     if (mounted) {
       super.initState();
       _controller = TabController(length: tabs.length, vsync: this);
-      //categories = getCategories();
+      getDate();
       getNews();
       _controller.addListener(() {
         print(
@@ -62,14 +62,30 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List<ArticleModel> articles = List<ArticleModel>();
 
   bool _loading = true;
+  String formattedDate = '';
+  String formattedDay = '';
 
   getNews() async {
     News newsClass = News();
-    await newsClass.getNews();
-    articles = newsClass.news;
-    setState(() {
-      _loading = false;
-    });
+    while (mounted) {
+      await newsClass.getNews();
+      articles = newsClass.news;
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
+
+  getDate() {
+    while (mounted) {
+      var now = new DateTime.now();
+      var formatter = new DateFormat('dd-MM-yyyy');
+      var day = new DateFormat('EEEE').format(now);
+      setState(() {
+        formattedDate = formatter.format(now);
+        formattedDay = day;
+      });
+    }
   }
 
   @override
@@ -77,165 +93,77 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
-          appBar: AppBar(
-            leading: Image.asset(
+        appBar: AppBar(
+          leading: Container(
+            padding: EdgeInsets.all(14),
+            child: Image.asset(
               'assets/images/logo.png',
             ),
-            title: Center(
-              child: Text(
-                'NEWSCAST',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 22,
-                  letterSpacing: 6,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w800,
-                ),
+          ),
+          title: Center(
+            child: Text(
+              'NEWSCAST',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                letterSpacing: 6,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w800,
               ),
             ),
-            elevation: 0,
-            actions: [
-              Opacity(
-                opacity: 0.0,
-                child: Container(
-                  margin: EdgeInsets.only(right: 20),
-                  child: Icon(
-                    Icons.language_sharp,
-                  ),
+          ),
+          elevation: 0,
+          actions: [
+            Opacity(
+              opacity: 0.0,
+              child: Container(
+                margin: EdgeInsets.only(right: 20),
+                child: Icon(
+                  Icons.language_sharp,
                 ),
-              )
-            ],
-            bottom:
-                TabBar(isScrollable: true, controller: _controller, tabs: tabs),
-          ),
-          body: Container(
-            color: Color(0xff141414),
-            child: TabBarView(controller: _controller, children: [
-              WorldNews(
-                articles: articles,
-                isLoading: !_loading,
               ),
-              CategoryNews(
-                category: 'business',
-              ),
-              CategoryNews(
-                category: 'general',
-              ),
-              CategoryNews(
-                category: 'sports',
-              ),
-              CategoryNews(
-                category: 'entertainment',
-              ),
-              CategoryNews(
-                category: 'health',
-              ),
-              CategoryNews(
-                category: 'technology',
-              ),
-              CategoryNews(
-                category: 'science',
-              ),
-            ]),
-          ),
-          ),
-    );
-  }
-}
-
-class WorldNews extends StatefulWidget {
-  final List<ArticleModel> articles;
-  final bool isLoading;
-  WorldNews({@required this.articles, this.isLoading});
-  @override
-  _WorldNewsState createState() => _WorldNewsState();
-}
-
-class _WorldNewsState extends State<WorldNews> {
-  @override
-  Widget build(BuildContext context) {
-    return widget.isLoading
-        ? SingleChildScrollView(
-            child: Column(
-              children: [
-                TopStories(widget: widget),
-                Container(
-                  child: ListView.builder(
-                    physics: ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (ctx, index) {
-                      return BlogTile(
-                        imageUrl: widget.articles[index + 3].urlToImage,
-                        title: widget.articles[index + 3].title,
-                        description: widget.articles[index + 3].description,
-                        url: widget.articles[index + 3].url,
-                      );
-                    },
-                    itemCount: widget.articles.length - 4,
-                  ),
-                ),
-              ],
+            )
+          ],
+          bottom:
+              TabBar(isScrollable: true, controller: _controller, tabs: tabs),
+        ),
+        body: Container(
+          color: Color(0xff141414),
+          child: TabBarView(controller: _controller, children: [
+            WorldNews(
+              articles: articles,
+              isLoading: !_loading,
+              date: formattedDate,
+              day: formattedDay,
             ),
-          )
-        : Container(
-            child: Center(
-              child: SpinKitFadingCircle(
-                itemBuilder: (_, int index) {
-                  return DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: index.isEven ? Colors.red : Colors.green,
-                    ),
-                  );
-                },
-                size: 20.0,
-              ),
+            CategoryNews(
+              category: 'business',
             ),
-          );
-  }
-}
-
-class TopStories extends StatelessWidget {
-  TopStories({
-    @required this.widget,
-  });
-
-  final WorldNews widget;
-
-  final List<Color> _colors = [
-    Color(0xFF19249f),
-    Color(0xFFffba57),
-    Color(0xFFa00058),
-    Color(0xFFecd000),
-    Color(0xFFe69a28),
-    Color(0xFF5564ec),
-    Color(0xFFfe5612),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 10, bottom: 10, left: 5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15), topLeft: Radius.circular(15)),
-        // color: Color(0xFF393f47),
-      ),
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 5),
-        height: 130.0,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (ctx, index) {
-            return TopNews(
-              title: widget.articles[index].title,
-              color: _colors[index],
-              imageUrl: widget.articles[index].urlToImage,
-            );
-          },
-          itemCount: 3,
+            CategoryNews(
+              category: 'general',
+            ),
+            CategoryNews(
+              category: 'sports',
+            ),
+            CategoryNews(
+              category: 'entertainment',
+            ),
+            CategoryNews(
+              category: 'health',
+            ),
+            CategoryNews(
+              category: 'technology',
+            ),
+            CategoryNews(
+              category: 'science',
+            ),
+          ]),
         ),
       ),
     );
   }
 }
+
+
+
+

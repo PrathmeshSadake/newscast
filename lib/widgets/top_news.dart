@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class TopNews extends StatelessWidget {
   final String title;
@@ -13,8 +14,7 @@ class TopNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130.0,
-      // width: 220.0,
+      height: 140.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
         color: color,
@@ -28,14 +28,20 @@ class TopNews extends StatelessWidget {
               right: 10,
             ),
             child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                child: Image.network(imageUrl)),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              child: Container(
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: imageUrl,
+                ),
+              ),
+            ),
           ),
           Column(
             children: [
               Container(
                 margin: EdgeInsets.only(top: 5),
-                width: 150,
+                width: 160,
                 child: Text(
                   title,
                   softWrap: true,

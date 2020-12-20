@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './screens/home.dart';
+
+import 'package:newscast/screens/home.dart';
+import 'package:newscast/screens/splash_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
-      home: Home(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/home': (context) => Home(),
+      },
     );
   }
 }

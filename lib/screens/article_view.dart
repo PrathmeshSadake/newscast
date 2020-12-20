@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
+
 import 'package:newscast/screens/browser_view.dart';
+import 'package:newscast/screens/home.dart';
 
 class ArticleView extends StatelessWidget {
   final String imageUrl;
@@ -43,9 +46,17 @@ class ArticleView extends StatelessWidget {
         actions: [
           Container(
             margin: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.home,
-              size: 30,
+            child: IconButton(
+              icon: Icon(
+                Icons.home,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                    ModalRoute.withName('/home'));
+              },
             ),
           ),
         ],
@@ -66,7 +77,7 @@ class ArticleView extends StatelessWidget {
               ),
               SingleChildScrollView(
                 child: Container(
-                  margin: EdgeInsets.only(top: 200),
+                  margin: EdgeInsets.only(top: 150),
                   width: double.infinity,
                   padding:
                       EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
@@ -87,13 +98,17 @@ class ArticleView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 18,
                       ),
                       ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          child: Image.network(imageUrl)),
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: imageUrl,
+                        ),
+                      ),
                       SizedBox(
-                        height: 20,
+                        height: 18,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
@@ -107,7 +122,7 @@ class ArticleView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 18,
                       ),
                       GestureDetector(
                         onTap: () {

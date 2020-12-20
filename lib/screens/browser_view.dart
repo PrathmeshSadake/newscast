@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'package:newscast/screens/home.dart';
+
 class BrowserView extends StatelessWidget {
   final String blogUrl;
   BrowserView({@required this.blogUrl});
@@ -34,9 +36,17 @@ class BrowserView extends StatelessWidget {
         actions: [
           Container(
             margin: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.home,
-              size: 30,
+            child: IconButton(
+              icon: Icon(
+                Icons.home,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                    ModalRoute.withName('/home'));
+              },
             ),
           )
         ],
