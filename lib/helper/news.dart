@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/article_model.dart';
 
-
-String _apiKey = 'f689f89577224af68e3a4d2f7140bd88';
+String _apiKey = 'bca60ca4665a42e3b01d791bca670476';
 
 class News {
   List<ArticleModel> news = [];
