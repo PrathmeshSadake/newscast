@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
+          statusBarColor: Colors.black,
         ),
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
@@ -51,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                         text: [
                           "NEWSCAST",
                         ],
-                        speed: Duration(milliseconds: 2000),
+                        speed: Duration(milliseconds: 1000),
                         textStyle: TextStyle(
                           fontSize: 40.0,
                           fontFamily: "CarterOne",
@@ -59,9 +59,9 @@ class SplashScreen extends StatelessWidget {
                           letterSpacing: 3,
                         ),
                         colors: [
-                          Colors.purple,
-                          Colors.blue,
                           Colors.yellow,
+                          Colors.pink[300],
+                          Colors.blue[900],
                           Colors.deepPurple[900],
                         ],
                         textAlign: TextAlign.start,
