@@ -1,6 +1,6 @@
 # Newscast
 
-<img src="https://github.com/PrathmeshSadake/newscast/blob/master/screenshots/screenshot.svg" width="100%"/>
+<img src="https://github.com/PrathmeshSadake/newscast/blob/master/screenshots/screenshot.jpg" width="100%"/>
 
 ```
 
