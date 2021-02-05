@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newscast/providers/news.dart';
-import 'package:newscast/screens/top_news.dart';
+import 'package:newscast/screens/top_world_news.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newscast/widgets/categories.dart';
 import 'package:newscast/widgets/home.dart';
@@ -64,7 +64,7 @@ class _HomepageState extends State<Homepage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (ctx) => TopNews(),
+                    builder: (ctx) => TopWorldNews(),
                   ),
                 );
               },

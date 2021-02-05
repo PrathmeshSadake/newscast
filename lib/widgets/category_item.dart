@@ -47,7 +47,7 @@ class CategoryItem extends StatelessWidget {
           child: Text(
             name.toUpperCase(),
             style: GoogleFonts.coustard(
-              color: Colors.white,
+              color: Colors.grey,
               fontSize: 20,
               fontWeight: FontWeight.w800,
               letterSpacing: 3,

@@ -23,6 +23,10 @@ class News extends ChangeNotifier {
     return [..._worldNews];
   }
 
+  List<Article> get topNews {
+    return [..._topNews];
+  }
+
   String formatter(String date) {
     DateTime parsedDate = DateTime.parse(date);
     var formattedDate = DateFormat('dd/MM/yyyy').format(parsedDate);
@@ -51,7 +55,6 @@ class News extends ChangeNotifier {
   //   _categoryNews = _loadedItems;
   //   print(_categoryNews.length);
   // }
-
   Future<void> getCategoriesNews(String category) async {
     final url = '$baseUrl/topstories/v2/$category.json?api-key=$apiKey';
     var response = await http.get(url);
@@ -71,6 +74,33 @@ class News extends ChangeNotifier {
     _categoryNews = _loadedItems;
   }
 
+  Future<void> getTopNews() async {
+    final url =
+        'http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bca60ca4665a42e3b01d791bca670476';
+    var response = await http.get(url);
+    var jsonResponse = json.decode(response.body);
+    List extractedData = jsonResponse['articles'];
+    _loadedItems = [];
+    extractedData.forEach((item) {
+      if (item['title'] != null &&
+          item['author'] != null &&
+          item['description'] != null &&
+          item['urlToImage'] != null &&
+          item['urlToImage'] != null) {
+        _loadedItems.add(Article(
+          headline: item['title'],
+          source: item['author'],
+          description: item['description'],
+          date: formatter(item['publishedAt']),
+          imageUrl: item['urlToImage'],
+          webUrl: item['urlToImage'],
+        ));
+      }
+    });
+    _topNews = _loadedItems;
+    print(_topNews.length);
+  }
+
   Future<void> getWorldNews() async {
     final url = '$baseUrl/topstories/v2/world.json?api-key=$apiKey';
     var response = await http.get(url);
@@ -88,6 +118,24 @@ class News extends ChangeNotifier {
       ));
     });
     _worldNews = _loadedItems;
-    print(_worldNews.length);
   }
+
+  // Future<void> getTopNews() async {
+  //   final url = '$baseUrl/topstories/v2/world.json?api-key=$apiKey';
+  //   var response = await http.get(url);
+  //   var jsonResponse = json.decode(response.body);
+  //   List extractedData = jsonResponse['results'];
+  //   _loadedItems = [];
+  //   extractedData.forEach((item) {
+  //     _loadedItems.add(Article(
+  //       headline: item['title'],
+  //       source: item['byline'],
+  //       description: item['abstract'],
+  //       date: formatter(item['published_date']),
+  //       imageUrl: item['multimedia'][0]['url'],
+  //       webUrl: item['url'],
+  //     ));
+  //   });
+  //   _topNews = _loadedItems;
+  // }
 }
