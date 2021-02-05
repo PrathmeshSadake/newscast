@@ -1,17 +1,16 @@
-# Newscast
+# newscast
 
-<img src="https://github.com/PrathmeshSadake/newscast/blob/master/screenshots/screenshot.jpg" width="100%"/>
+A new Flutter project.
 
-```
-
-About : 
-A News app made with flutter SDK which fetches news from news API.
-It has some awesome features like category wise news,
-tab bar, splash screen, article view and browser view.
-
-```
- :loudspeaker: A Flutter project.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
 
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
