@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:newscast/providers/news.dart';
-import 'package:newscast/widgets/article_item.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../providers/news.dart';
+import '../widgets/article_item.dart';
 
 class CategoryNewsScreen extends StatefulWidget {
   final String categoryName;
@@ -37,7 +39,17 @@ class _CategoryNewsScreenState extends State<CategoryNewsScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.categoryName),
+        iconTheme: IconThemeData(color: Color(0xFFAC7FFC)),
+        backgroundColor: Color(0xFFF9FAFE),
+        elevation: 0,
+        title: Text(
+          widget.categoryName.toUpperCase(),
+          style: GoogleFonts.bioRhyme(
+            fontSize: 21,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 2,
+          ),
+        ),
       ),
       body: _isLoading
           ? Center(

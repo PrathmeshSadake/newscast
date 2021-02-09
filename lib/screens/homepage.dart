@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:newscast/providers/news.dart';
-import 'package:newscast/screens/top_world_news.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:newscast/widgets/categories.dart';
-import 'package:newscast/widgets/home.dart';
-import 'package:newscast/widgets/search.dart';
 
-import 'package:intl/intl.dart';
+import './top_world_news.dart';
+import '../widgets/categories.dart';
+import '../widgets/home.dart';
+import '../widgets/search.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -14,14 +12,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  // var date = '2021-02-05T09:41:13+0000';
-
   @override
   void initState() {
     super.initState();
-    // DateTime parsedDate = DateTime.parse(date);
-    // var formattedDate = DateFormat('dd/MM/yyyy').format(parsedDate);
-    // print(formattedDate);
   }
 
   int _selectedIndex = 0;
@@ -55,19 +48,22 @@ class _HomepageState extends State<Homepage> {
             color: Color(0xFFAC7FFC),
           ),
           actions: [
-            IconButton(
-              icon: Icon(
-                Icons.language,
-                size: 30,
+            Padding(
+              padding: const EdgeInsets.only(right: 5.0),
+              child: IconButton(
+                icon: Icon(
+                  Icons.language,
+                  size: 30,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (ctx) => TopWorldNews(),
+                    ),
+                  );
+                },
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (ctx) => TopWorldNews(),
-                  ),
-                );
-              },
             ),
           ],
           elevation: 0,

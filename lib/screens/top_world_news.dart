@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:newscast/providers/news.dart';
-import 'package:newscast/widgets/article_item.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../providers/news.dart';
+import '../widgets/article_item.dart';
 
 class TopWorldNews extends StatefulWidget {
   @override
@@ -33,6 +35,17 @@ class _TopWorldNewsState extends State<TopWorldNews> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        iconTheme: IconThemeData(color: Color(0xFFAC7FFC)),
+        backgroundColor: Color(0xFFF9FAFE),
+        elevation: 0,
+        title: Text(
+          'World News',
+          style: GoogleFonts.bioRhyme(
+            fontSize: 23,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 2,
+          ),
+        ),
       ),
       body: _isLoading
           ? Center(
@@ -40,7 +53,6 @@ class _TopWorldNewsState extends State<TopWorldNews> {
             )
           : Container(
               padding: EdgeInsets.symmetric(
-                vertical: 10,
                 horizontal: 10,
               ),
               child: Consumer<News>(
