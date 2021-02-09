@@ -6,12 +6,12 @@ class Article {
   final String imageUrl;
   final String date;
 
-  Article(
-      {
-      this.headline,
-      this.description,
-      this.source,
-      this.webUrl,
-      this.imageUrl,
-      this.date});
+  Article({
+    this.headline,
+    this.description,
+    this.source,
+    this.webUrl,
+    this.imageUrl,
+    this.date,
+  });
 }
