@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:newscast/screens/category_news.dart';
+
+import '../screens/category_news.dart';
 
 class CategoryItem extends StatelessWidget {
   final String imageUrl;
@@ -37,9 +38,7 @@ class CategoryItem extends StatelessWidget {
               Colors.black54,
               BlendMode.darken,
             ),
-            image: NetworkImage(
-              imageUrl,
-            ),
+            image: AssetImage(imageUrl),
             fit: BoxFit.cover,
           ),
         ),
@@ -47,9 +46,9 @@ class CategoryItem extends StatelessWidget {
           child: Text(
             name.toUpperCase(),
             style: GoogleFonts.coustard(
-              color: Colors.grey,
-              fontSize: 20,
-              fontWeight: FontWeight.w800,
+              color: Colors.grey[200],
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
               letterSpacing: 3,
             ),
           ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:newscast/providers/news.dart';
-import 'package:newscast/widgets/article_item.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/news.dart';
+import './article_item.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,12 +14,12 @@ class _HomeState extends State<Home> {
   var _isLoading = false;
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies(){
     if (_isInit) {
       setState(() {
         _isLoading = true;
       });
-      Provider.of<News>(context).getTopNews().then((_) {
+     Provider.of<News>(context).getTopNews().then((_) {
         setState(() {
           _isLoading = false;
         });
@@ -36,7 +37,6 @@ class _HomeState extends State<Home> {
           )
         : Container(
             padding: EdgeInsets.symmetric(
-              vertical: 10,
               horizontal: 10,
             ),
             child: Consumer<News>(
